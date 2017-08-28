@@ -1,0 +1,7 @@
+{
+  "name": "polymerlearning",
+  "short_name": "polymerlearning",
+  "description": "Explain polymer throught github",
+  "start_url": "/",
+  "display": "standalone"
+}

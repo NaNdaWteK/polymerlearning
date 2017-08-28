@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="pl-winner">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>
+        <h1>Fighter one</h1>
+        <p>[[fullName]]</p>
+        <p>lives: {{winner.live}}</p>
+    </div>
+  </template>
+
+  <script>
+    class PlWinner extends Polymer.Element {
+        static get is() { return 'pl-winner'; }
+        static get properties() {
+            return {
+                winner: {
+                    type: Object,
+                    value: function() {
+                        return {
+                            name: 'Nacho',
+                            lastName: 'Benítez',
+                            live: 5,
+                        };
+                    },
+                },
+                fullName: {
+                    type: String,
+                    computed: 'computedFullName(winner.name, winner.lastName)',
+                }
+            }
+        }
+        computedFullName(name, lastName){
+            return name + ' ' + lastName;
+        }
+    }
+
+    window.customElements.define(PlWinner.is, PlWinner);
+  </script>
+</dom-module>

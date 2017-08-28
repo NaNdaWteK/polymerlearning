@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="pl-game">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <button on-click="fightStart">Start Fight</button>
+    <pl-winner id="winner"></pl-winner>
+    <pl-loser id="loser"></pl-loser>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PlGame extends Polymer.Element {
+        static get is() { return 'pl-game'; }
+        static get properties() {
+            return {
+                victory: {
+                    type: String
+                }
+            };
+        }
+        fightStart() {
+            this.$.loser.hide = false;
+        }
+    }
+
+    window.customElements.define(PlGame.is, PlGame);
+  </script>
+</dom-module>

@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="pl-loser">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div hidden="{{hide}}">
+        <h1>Fighter two</h1>
+        <p>[[fullName]]</p>
+        <p>lives: {{loser.live}}</p>
+    </div>
+  </template>
+
+  <script>
+    class PlLoser extends Polymer.Element {
+        static get is() { return 'pl-loser'; }
+        static get properties() {
+            return {
+                loser: {
+                    type: Object,
+                    value: function() {
+                        return {
+                            energy: '100',
+                            live: 5
+                        };
+                    },
+                },
+
+                fullName: {
+                    type: String,
+                    value: 'Enemy Army'
+                },
+                
+                hide: {
+                    type: Boolean,
+                    value: true
+                }
+            }
+        }
+        computedFullName(name, lastName){
+            return name + ' ' + lastName;
+        }
+    }
+
+    window.customElements.define(PlLoser.is, PlLoser);
+  </script>
+</dom-module>
