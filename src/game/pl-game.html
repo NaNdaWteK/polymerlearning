@@ -7,6 +7,7 @@
         display: block;
       }
     </style>
+    <h1>[[victory]]</h1>
     <button on-click="fightStart">Start Fight</button>
     <pl-winner id="winner"></pl-winner>
     <pl-loser id="loser"></pl-loser>
@@ -22,12 +23,17 @@
         static get properties() {
             return {
                 victory: {
-                    type: String
+                    type: String,
+                    observer: 'youWin'
                 }
             };
         }
         fightStart() {
             this.$.loser.hide = false;
+        }
+
+        youWin() {
+            alert(this.$.winner.fullName + ' win');
         }
     }
 

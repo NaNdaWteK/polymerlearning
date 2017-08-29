@@ -33,13 +33,33 @@
                     type: String,
                     value: 'Enemy Army'
                 },
-                
+
                 hide: {
                     type: Boolean,
                     value: true
                 }
             }
         }
+
+        static get observers() {
+            return [
+                'isItDeath(loser.live)'
+            ];
+        }
+
+        areDamage() {
+            this.loser.live -= 1;
+            this.notifyPath('loser.live', this.loser.live);
+        }
+
+        isItDeath(lives) {
+            if(this.loser.live == 0){
+                alert(this.fullName + ' is Death');
+            }else{
+                alert(this.fullName + ' still alive')
+            }
+        }
+
         computedFullName(name, lastName){
             return name + ' ' + lastName;
         }

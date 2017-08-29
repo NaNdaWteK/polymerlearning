@@ -2,7 +2,15 @@
 
 Remember that view it since the first commit
 
-## Actual step(1)
+## Actual step(2)
+
+At step 2 we learn about observers, there are the most important type of observer, in future leassons we add new one
+
+* There is one properti observer in game webcomponent
+* There is array observe in loser webcomponent, we learn we need notifyPath to notify changes in a subproperty
+
+
+## Step 1
 
 In this step we learn some about binding, with two databinding options to do our polymer app more eficient
 
