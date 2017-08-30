@@ -23,20 +23,34 @@
                     type: Object,
                     value: function() {
                         return {
-                            name: 'Nacho',
-                            lastName: 'Benítez',
+                            info: {
+                                name: 'Nacho',
+                                lastName: 'Benítez',
+                                other: {
+                                    age: 37
+                                }
+                            },
                             live: 5,
                         };
                     },
                 },
                 fullName: {
                     type: String,
-                    computed: 'computedFullName(winner.name, winner.lastName)',
                 }
             }
         }
-        computedFullName(name, lastName){
-            return name + ' ' + lastName;
+
+        static get observers() {
+            return [
+                'setFullName(winner.info.*)'
+            ]
+        }
+
+        setFullName(changeRecord){
+            console.log(changeRecord.path);
+            console.log(changeRecord.value);
+            console.log(changeRecord.base);
+            this.fullName = this.winner.info.name + " " + this.winner.info.lastName;
         }
     }
 
