@@ -2,10 +2,9 @@
 
 Remember that view it since the first commit
 
-## Actual step(3)
+## Actual step(4)
 
-We learn much about observers, in this case deep observers, that are listening all childs of my object since * mark
-This example is in pl-winner webcomponent
+In this step we implement an array observer to observe array mutations
 
 ## Step 1
 
@@ -23,3 +22,8 @@ At step 2 we learn about observers, there are the most important type of observe
 
 * There is one properti observer in game webcomponent
 * There is array observe in loser webcomponent, we learn we need notifyPath to notify changes in a subproperty
+
+## Step 3
+
+We learn much about observers, in this case deep observers, that are listening all childs of my object since * mark
+This example is in pl-winner webcomponent

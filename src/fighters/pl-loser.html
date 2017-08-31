@@ -10,7 +10,6 @@
     <div hidden="{{hide}}">
         <h1>Fighter two</h1>
         <p>[[fullName]]</p>
-        <p>lives: {{loser.live}}</p>
     </div>
   </template>
 
@@ -19,14 +18,23 @@
         static get is() { return 'pl-loser'; }
         static get properties() {
             return {
-                loser: {
-                    type: Object,
+                losers: {
+                    type: Array,
                     value: function() {
-                        return {
-                            energy: '100',
-                            live: 5
-                        };
+                        return [
+                            {
+                                type: 'Tank',
+                                energy: '100',
+                                live: 5
+                            },
+                            {
+                                type: 'Aeroplane',
+                                energy: '900',
+                                live: 1
+                            }
+                        ]
                     },
+                    notify: true
                 },
 
                 fullName: {
@@ -43,26 +51,29 @@
 
         static get observers() {
             return [
-                'isItDeath(loser.live)'
+                'isItDeath(losers.splices)'
             ];
         }
 
-        areDamage() {
-            this.loser.live -= 1;
-            this.notifyPath('loser.live', this.loser.live);
+        areDamage(damage) {
+            this.losers.forEach(function (loser, index) {
+                loser.live -= damage;
+                if(loser.live < 0){
+                    let splice = this.splice('losers', index, 1);
+                }
+            }.bind(this));
         }
 
-        isItDeath(lives) {
-            if(this.loser.live == 0){
-                alert(this.fullName + ' is Death');
-            }else{
-                alert(this.fullName + ' still alive')
+        isItDeath(changeRecord) {
+            if(typeof changeRecord !== 'undefined'){
+                alert(changeRecord.indexSplices[0].removed[0].type + ' is death')
             }
         }
 
         setFullName(name, lastName){
             return name + ' ' + lastName;
         }
+
     }
 
     window.customElements.define(PlLoser.is, PlLoser);
